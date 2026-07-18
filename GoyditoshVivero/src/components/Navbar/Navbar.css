@@ -1,0 +1,35 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.navbar__brand .brand-link {
+  text-decoration: none;
+  color: var(--text-h);
+  font-weight: 700;
+}
+
+.navbar__list {
+  display: flex;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar__list a {
+  text-decoration: none;
+  color: var(--text);
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+
+.navbar__list a.active {
+  color: var(--text-h);
+  background: var(--accent-bg);
+  box-shadow: var(--shadow);
+}

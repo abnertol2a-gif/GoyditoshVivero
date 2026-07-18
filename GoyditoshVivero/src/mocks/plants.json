@@ -1,0 +1,5 @@
+[
+  { "id": 1, "nombre": "Ficus Lyrata", "categoria": "Interior", "stock": 12, "precio": 25.5 },
+  { "id": 2, "nombre": "Monstera Deliciosa", "categoria": "Interior", "stock": 8, "precio": 30.0 },
+  { "id": 3, "nombre": "Lavanda", "categoria": "Exterior", "stock": 20, "precio": 7.75 }
+]

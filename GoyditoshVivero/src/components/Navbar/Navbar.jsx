@@ -15,12 +15,12 @@ function Navbar() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/plantas" className={({isActive}) => isActive ? 'active' : ''}>
+          <NavLink to="/plantas" end className={({isActive}) => isActive ? 'active' : ''}>
             Plantas
           </NavLink>
         </li>
         <li>
-          <NavLink to="/plantas/" className={({isActive}) => isActive ? 'active' : ''}>
+          <NavLink to="/inventario" className={({isActive}) => isActive ? 'active' : ''}>
             Inventario
           </NavLink>
         </li>

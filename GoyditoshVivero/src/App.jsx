@@ -4,6 +4,7 @@ import Home from './pages/Home/Home'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Plantas from './pages/Plantas/Plantas'
 import PlantDetail from './pages/Plantas/PlantDetail'
+import Inventario from './pages/Inventario/Inventario'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="plantas" element={<Plantas />} />
+        <Route path="inventario" element={<Inventario />} />
         <Route path="plantas/:id" element={<PlantDetail />} />
       </Route>
     </Routes>

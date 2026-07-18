@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import './Plantas.css'
+import '../Plantas/Plantas.css'
 
-function PlantDetail() {
+function Inventario() {
   const [plants, setPlants] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -11,20 +11,19 @@ function PlantDetail() {
     setLoading(true)
     setError(null)
 
-    // fetch mock JSON (local file resolves quickly); add artificial delay
     fetch('/src/mocks/plants.json')
       .then((res) => {
         if (!res.ok) throw new Error('Network response was not ok')
         return res.json()
       })
       .then((data) => {
-        // simulate network latency so loading UI is visible
+        // simulate small latency so loading state is visible
         setTimeout(() => {
           if (!cancelled) {
             setPlants(data)
             setLoading(false)
           }
-        }, 700)
+        }, 1700)
       })
       .catch((err) => {
         setTimeout(() => {
@@ -32,7 +31,7 @@ function PlantDetail() {
             setError(err.message)
             setLoading(false)
           }
-        }, 700)
+        }, 1700)
       })
 
     return () => {
@@ -41,14 +40,14 @@ function PlantDetail() {
   }, [])
 
   return (
-    <main className="plant-detail">
+    <main className="plantas">
       <header>
-        <h1>Detalle de planta</h1>
-        <p>Información completa de la planta seleccionada.</p>
+        <h1>Inventario</h1>
+        <p>Plantas disponibles en el vivero.</p>
       </header>
 
-      <section aria-label="Detalle">
-        {loading && <p>Cargando plantas...</p>}
+      <section aria-label="Listado de plantas">
+        {loading && <p>Cargando inventario...</p>}
         {error && <p style={{ color: 'var(--accent)' }}>Error: {error}</p>}
         {!loading && !error && (
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
@@ -79,4 +78,4 @@ function PlantDetail() {
   )
 }
 
-export default PlantDetail
+export default Inventario

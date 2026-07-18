@@ -1,0 +1,13 @@
+.plantas {
+  padding: 24px;
+}
+
+.plantas header {
+  margin-bottom: 12px;
+}
+
+.plantas section {
+  border: 1px dashed var(--border);
+  padding: 16px;
+  border-radius: 10px;
+}

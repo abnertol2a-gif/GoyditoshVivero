@@ -1,0 +1,41 @@
+.home {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.home__hero {
+  width: min(780px, 100%);
+  padding: clamp(24px, 4vw, 40px);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(72, 190, 130, 0.18), transparent 40%),
+    radial-gradient(circle at 90% 90%, rgba(242, 163, 101, 0.2), transparent 45%),
+    var(--bg);
+  text-align: center;
+}
+
+.home__eyebrow {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1f6f4a;
+  background: rgba(72, 190, 130, 0.2);
+}
+
+.home h1 {
+  margin: 0 0 12px;
+}
+
+.home__description {
+  max-width: 54ch;
+  margin: 0 auto;
+}

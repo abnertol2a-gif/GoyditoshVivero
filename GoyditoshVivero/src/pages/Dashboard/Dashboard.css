@@ -1,0 +1,14 @@
+.dashboard {
+  padding: 24px;
+}
+
+.dashboard__header {
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.dashboard__content {
+  border: 1px dashed var(--border);
+  padding: 18px;
+  border-radius: 12px;
+}

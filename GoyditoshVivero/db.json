@@ -1,0 +1,40 @@
+{
+  "plants": [
+    {
+      "id": "1",
+      "nombre": "Ficus Lyrata",
+      "categoria": "Interior",
+      "stock": 12,
+      "precio": 25.5
+    },
+    {
+      "id": "2",
+      "nombre": "Monstera Deliciosa",
+      "categoria": "Interior",
+      "stock": 8,
+      "precio": 30
+    },
+    {
+      "id": "3",
+      "nombre": "Lavanda",
+      "categoria": "Exterior",
+      "stock": 20,
+      "precio": 7.75
+    },
+    {
+      "nombre": "Echinocactus Grussonii",
+      "categoria": "Suculenta",
+      "stock": 50,
+      "precio": 650,
+      "id": "r2MrTBmtwGs"
+    },
+    {
+      "nombre": "Venus Atrapamoscas",
+      "categoria": "Exterior",
+      "stock": 100,
+      "precio": 150,
+      "id": "ZajUz7JYVII"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

@@ -24,6 +24,13 @@ function Navbar() {
             Inventario
           </NavLink>
         </li>
+
+        <li>
+          <NavLink to="/test1" className={({isActive}) => isActive ? 'active' : ''}>
+            Test1
+          </NavLink>
+        </li>
+        
       </ul>
     </nav>
   )

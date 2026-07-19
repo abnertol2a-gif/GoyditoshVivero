@@ -1,0 +1,28 @@
+.plant-form {
+  margin-bottom: 16px;
+}
+
+.plant-form__row {
+  display: flex;
+  gap: 12px;
+  align-items: end;
+  flex-wrap: wrap;
+}
+
+.plant-form__row label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.plant-form__submit {
+  padding: 8px 12px;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  border-radius: 8px;
+}
+
+.plant-form__error {
+  color: #b91c1c;
+  margin-top: 8px;
+}

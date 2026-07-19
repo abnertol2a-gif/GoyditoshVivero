@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
 import '../Plantas/Plantas.css'
+import inventoryService from '../../services/inventoryService'
+import PlantForm from '../../components/PlantForm/PlantForm'
 
+// Inventario page: lists plants using the inventoryService (json-server)
 function Inventario() {
   const [plants, setPlants] = useState([])
   const [loading, setLoading] = useState(true)
@@ -11,33 +14,49 @@ function Inventario() {
     setLoading(true)
     setError(null)
 
-    fetch('/src/mocks/plants.json')
-      .then((res) => {
-        if (!res.ok) throw new Error('Network response was not ok')
-        return res.json()
-      })
+    // Use the inventoryService to fetch plants from the mock API
+    inventoryService
+      .getAllPlants()
       .then((data) => {
-        // simulate small latency so loading state is visible
-        setTimeout(() => {
-          if (!cancelled) {
-            setPlants(data)
-            setLoading(false)
-          }
-        }, 1700)
+        if (!cancelled) setPlants(data)
       })
       .catch((err) => {
-        setTimeout(() => {
-          if (!cancelled) {
-            setError(err.message)
-            setLoading(false)
-          }
-        }, 1700)
+        if (!cancelled) setError(err.message)
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false)
       })
 
     return () => {
       cancelled = true
     }
   }, [])
+
+    useEffect(()=>{
+      console.log("Hola")
+    }, [])
+
+  // Handler passed to PlantForm to create a new plant.
+  // After creation we append the returned plant to the local state so the
+  // table updates without needing to re-fetch all plants.
+  async function handleCreate(payload) {
+    // createPlant throws on error — catch in PlantForm
+    const created = await inventoryService.createPlant(payload)
+    setPlants((prev) => [...prev, created])
+  }
+
+  // Handler to delete a plant. Asks for confirmation then calls the API
+  // and updates local state on success.
+  async function handleDelete(id) {
+    const ok = window.confirm('¿Eliminar esta planta del inventario?')
+    if (!ok) return
+    try {
+      await inventoryService.deletePlant(id)
+      setPlants((prev) => prev.filter((p) => p.id !== id))
+    } catch (err) {
+      alert('Error al eliminar: ' + err.message)
+    }
+  }
 
   return (
     <main className="plantas">
@@ -49,6 +68,10 @@ function Inventario() {
       <section aria-label="Listado de plantas">
         {loading && <p>Cargando inventario...</p>}
         {error && <p style={{ color: 'var(--accent)' }}>Error: {error}</p>}
+        {/* Show the create form above the table */}
+        {!loading && !error && (
+          <PlantForm onCreate={handleCreate} />
+        )}
         {!loading && !error && (
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
@@ -67,6 +90,11 @@ function Inventario() {
                   <td style={{ padding: 8, textAlign: 'right' }}>{p.stock}</td>
                   <td style={{ padding: 8, textAlign: 'right' }}>
                     {new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(p.precio)}
+                  </td>
+                  <td style={{ padding: 8, textAlign: 'right' }}>
+                    <button onClick={() => handleDelete(p.id)} style={{ color: '#b91c1c' }}>
+                      Borrar
+                    </button>
                   </td>
                 </tr>
               ))}

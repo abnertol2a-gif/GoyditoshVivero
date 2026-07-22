@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react'
 import '../Plantas/Plantas.css'
 import inventoryService from '../../services/inventoryService'
 import PlantForm from '../../components/PlantForm/PlantForm'
+import EditPlantModal from '../../components/EditPlantModal/EditPlantModal'
 
 // Inventario page: lists plants using the inventoryService (json-server)
 function Inventario() {
   const [plants, setPlants] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [selectedPlant, setSelectedPlant] = useState(null)
 
   useEffect(() => {
     let cancelled = false
@@ -58,6 +60,14 @@ function Inventario() {
     }
   }
 
+  function handleEdit(id) {
+    const plant = plants.find(p => p.id === id)
+
+    if (plant) {
+      setSelectedPlant(plant)
+    }
+  }
+
   return (
     <main className="plantas">
       <header>
@@ -72,6 +82,13 @@ function Inventario() {
         {!loading && !error && (
           <PlantForm onCreate={handleCreate} />
         )}
+
+        <EditPlantModal
+          isOpen={!!selectedPlant}
+          plant={selectedPlant}
+          onClose={() => setSelectedPlant(null)}
+        />
+
         {!loading && !error && (
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
@@ -95,6 +112,11 @@ function Inventario() {
                     <button onClick={() => handleDelete(p.id)} style={{ color: '#b91c1c' }}>
                       Borrar
                     </button>
+
+                    <button onClick={() => handleEdit(p.id)} style={{ color: '#b91c1c' }}>
+                      Editar
+                    </button>
+
                   </td>
                 </tr>
               ))}
